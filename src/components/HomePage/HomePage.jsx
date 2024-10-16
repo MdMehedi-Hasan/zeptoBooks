@@ -8,6 +8,7 @@ import { getListOfBooks } from "../../api";
 import { useEffect, useState } from "react";
 import Pagination from "../common/Pagination";
 import Card from "../common/Card";
+import CardSkeleton from "../common/skeleton/CardSkeleton";
 
 const HomePage = () => {
   const [searchItem, setSearchItem] = useState("");
@@ -49,7 +50,11 @@ const HomePage = () => {
         onChange={(e) => setSearchItem(e.target.value)}
       />
       {isLoading ? (
-        <p>Loading....</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-10 mt-10">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
+        </div>
       ) : (
         <section className="grid grid-cols-4 gap-10 px-10 mt-10">
           {listOfBooks?.results?.map((book) => (
