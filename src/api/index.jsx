@@ -7,6 +7,6 @@ export const getSingleBook = async (id) => {
   return await response.json();
 };
 export const getFilteredBooks = async ( item ) => {
-  const response = await fetch(`https://gutendex.com/books?search=${item}`);
+  const response = await fetch(`https://gutendex.com/books?topic=${item}`);
   return await response.json();
 };

@@ -2,7 +2,6 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const Card = ({
   title,
-  author,
   image,
   authorName,
   genre,
@@ -17,10 +16,10 @@ const Card = ({
         <img src={image} alt="cover" className="h-full w-full object-contain" />
       </div>
       <div className="p-4">
-        <h2 className="text-lg font-semibold mb-1 text-gray-800 truncate">
+        <h2 className="text-lg font-semibold mb-1 text-gray-600 truncate">
           {title}
         </h2>
-        <p className="text-sm text-gray-600 mb-2">{author}</p>
+        <p className="text-sm text-gray-400 mb-2">{authorName}</p>
         <p className="text-sm text-gray-500 mb-4">{genre}</p>
         <div className="flex items-center justify-between">
           {isWishlisted ? (
