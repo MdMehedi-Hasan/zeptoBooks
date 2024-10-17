@@ -16,7 +16,7 @@ const Pagination = ({
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-end gap-5">
         <button
           type="button"

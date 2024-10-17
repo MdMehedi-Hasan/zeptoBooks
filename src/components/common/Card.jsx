@@ -12,7 +12,7 @@ const Card = ({
 }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-lg max-w-xs overflow-hidden">
-      <div className="bg-gray-100 h-64 w-full flex items-center justify-center">
+      <div className="bg-gray-100 h-64 w-full flex items-center justify-center p-4">
         <img src={image} alt="cover" className="h-full w-full object-contain" />
       </div>
       <div className="p-4">

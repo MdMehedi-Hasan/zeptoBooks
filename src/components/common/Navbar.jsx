@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { FaSearch, FaHome, FaHeart, FaBars } from 'react-icons/fa';
-import logo from '../../../public/MainLogo.png'
+import React, { useState } from "react";
+import { FaSearch, FaHome, FaHeart, FaBars } from "react-icons/fa";
+import logo from "../../../public/MainLogo.png";
+import { LuSearch } from "react-icons/lu";
 
-const Navbar = () => {
+const Navbar = ({setIsSearch,setSearchItem}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -17,25 +18,33 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <img src={logo} alt="logo" />
           </div>
-
-          {/* Search bar */}
-          <div className="hidden md:flex md:ml-6">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-64 py-2 pl-8 pr-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          <div className="hidden md:flex md:ml-6 items-center relative w-full max-w-md">
+            <input
+              type="text"
+              className="border border-gray-300 rounded py-2 px-4 w-full pl-10 focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300 ease-in-out"
+              placeholder="Search..."
+              onChange={(e) => setSearchItem(e.target.value)}
+            />
+            <span className="absolute left-4 text-gray-400">
+              <LuSearch
+                className="w-5 h-5 cursor-pointer"
+                onClick={() => setIsSearch(true)}
               />
-              <FaSearch className="absolute left-2 top-2 text-gray-500" />
-            </div>
+            </span>
           </div>
 
           {/* Menu Items */}
           <div className="hidden md:flex space-x-8">
-            <a href="#" className="text-gray-700 hover:text-indigo-500 flex items-center">
+            <a
+              href="#"
+              className="text-gray-700 hover:text-indigo-500 flex items-center"
+            >
               <FaHome className="mr-2" /> Home
             </a>
-            <a href="#" className="text-gray-700 hover:text-indigo-500 flex items-center">
+            <a
+              href="#"
+              className="text-gray-700 hover:text-indigo-500 flex items-center"
+            >
               <FaHeart className="mr-2" /> Wishlist
             </a>
           </div>
@@ -53,10 +62,16 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#" className="text-gray-700 hover:text-indigo-500 block flex items-center">
+            <a
+              href="#"
+              className="text-gray-700 hover:text-indigo-500 block flex items-center"
+            >
               <FaHome className="mr-2" /> Home
             </a>
-            <a href="#" className="text-gray-700 hover:text-indigo-500 block flex items-center">
+            <a
+              href="#"
+              className="text-gray-700 hover:text-indigo-500 block flex items-center"
+            >
               <FaHeart className="mr-2" /> Wishlist
             </a>
             <div className="relative mt-3">
