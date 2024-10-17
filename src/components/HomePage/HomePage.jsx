@@ -11,6 +11,7 @@ import Card from "../common/Card";
 import CardSkeleton from "../common/skeleton/CardSkeleton";
 import Filter from "../common/Filter";
 import { LuSearch } from "react-icons/lu";
+import MainLayout from "../Layouts/MainLayout";
 
 const HomePage = () => {
   const [searchItem, setSearchItem] = useState("");
@@ -20,20 +21,17 @@ const HomePage = () => {
   const [filterList, setFilterList] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState("");
 
-  const {
-    data: listOfBooks,
-    isLoading
-  } = useQuery({
+  const { data: listOfBooks, isLoading } = useQuery({
     queryKey: isSearch
       ? ["searchedBooks", isSearch]
       : selectedTopic
-      ? ["filteredBooks", selectedTopic,currentPage]
+      ? ["filteredBooks", selectedTopic, currentPage]
       : ["listOfBooks", currentPage],
     queryFn: async () =>
       isSearch
         ? await getSearchedBooks(searchItem)
         : selectedTopic
-        ? await getFilteredBooks(selectedTopic,currentPage)
+        ? await getFilteredBooks(selectedTopic, currentPage)
         : await getListOfBooks(currentPage),
   });
 
@@ -41,7 +39,7 @@ const HomePage = () => {
     if (selectedTopic || currentPage > 1) {
       setIsSearch(false);
     }
-  }, [selectedTopic,currentPage]);
+  }, [selectedTopic, currentPage]);
 
   useEffect(() => {
     const wishlistBooks = getWishlist();
@@ -73,54 +71,56 @@ const HomePage = () => {
     return wishlisted.some((wishlistItem) => wishlistItem.id === book.id);
   };
   return (
-    <div>
-      <div className="flex items-center justify-center mt-5 relative w-full max-w-md">
-        <input
-          type="text"
-          className="border border-gray-300 rounded-full py-2 px-4 w-full pl-10 focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300 ease-in-out"
-          placeholder="Search..."
-          onChange={(e) => setSearchItem(e.target.value)}
-        />
-        <span className="absolute left-4 text-gray-400">
-          <LuSearch
-            className="w-5 h-5 cursor-pointer"
-            onClick={() => setIsSearch(true)}
+    <MainLayout>
+      <div>
+        <div className="flex items-center justify-center mt-5 relative w-full max-w-md">
+          <input
+            type="text"
+            className="border border-gray-300 rounded-full py-2 px-4 w-full pl-10 focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300 ease-in-out"
+            placeholder="Search..."
+            onChange={(e) => setSearchItem(e.target.value)}
           />
-        </span>
-      </div>
-
-      <div className="flex justify-end">
-        <Filter filterList={filterList} selectedOption={setSelectedTopic} />
-      </div>
-      {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-10 mt-10">
-          {Array.from({ length: 12 }).map((_, index) => (
-            <CardSkeleton key={index} />
-          ))}
-        </div>
-      ) : (
-        <section className="grid grid-cols-4 gap-10 px-10 mt-10">
-          {listOfBooks?.results?.map((book) => (
-            <Card
-              id={book?.id}
-              key={book?.id}
-              title={book?.title}
-              image={book?.formats?.["image/jpeg"]}
-              authorName={book?.authors[0]?.name}
-              addToWishlist={() => handleAddToWishlist(book)}
-              removeWishlist={() => handleRemoveWishlist(book)}
-              isWishlisted={isBookWishlisted(book)}
+          <span className="absolute left-4 text-gray-400">
+            <LuSearch
+              className="w-5 h-5 cursor-pointer"
+              onClick={() => setIsSearch(true)}
             />
-          ))}
-        </section>
-      )}
-      <Pagination
-        itemsPerPage={listOfBooks?.results?.length}
-        totalDataCount={listOfBooks?.count}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
-    </div>
+          </span>
+        </div>
+
+        <div className="flex justify-end">
+          <Filter filterList={filterList} selectedOption={setSelectedTopic} />
+        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-10 mt-10">
+            {Array.from({ length: 12 }).map((_, index) => (
+              <CardSkeleton key={index} />
+            ))}
+          </div>
+        ) : (
+          <section className="grid grid-cols-4 gap-10 px-10 mt-10">
+            {listOfBooks?.results?.map((book) => (
+              <Card
+                id={book?.id}
+                key={book?.id}
+                title={book?.title}
+                image={book?.formats?.["image/jpeg"]}
+                authorName={book?.authors[0]?.name}
+                addToWishlist={() => handleAddToWishlist(book)}
+                removeWishlist={() => handleRemoveWishlist(book)}
+                isWishlisted={isBookWishlisted(book)}
+              />
+            ))}
+          </section>
+        )}
+        <Pagination
+          itemsPerPage={listOfBooks?.results?.length}
+          totalDataCount={listOfBooks?.count}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
+    </MainLayout>
   );
 };
 
