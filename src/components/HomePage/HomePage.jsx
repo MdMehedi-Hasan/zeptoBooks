@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import {
   addToWishlist,
   getWishlist,
@@ -10,7 +10,6 @@ import Pagination from "../common/Pagination";
 import Card from "../common/Card";
 import CardSkeleton from "../common/skeleton/CardSkeleton";
 import Filter from "../common/Filter";
-import { LuSearch } from "react-icons/lu";
 import Navbar from "../common/Navbar";
 import Footer from "../common/Footer";
 import HeroSection from "./HeroSection";
@@ -23,7 +22,7 @@ const HomePage = () => {
   const [filterList, setFilterList] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState("");
 
-  const { data: listOfBooks, isLoading } = useQuery({
+    const { data: listOfBooks, isLoading } = useQuery({
     queryKey: isSearch
       ? ["searchedBooks", isSearch]
       : selectedTopic
@@ -35,7 +34,7 @@ const HomePage = () => {
         : selectedTopic
         ? await getFilteredBooks(selectedTopic, currentPage)
         : await getListOfBooks(currentPage),
-  });
+  });  
 
   useEffect(() => {
     if (selectedTopic || currentPage > 1) {
@@ -72,11 +71,13 @@ const HomePage = () => {
   const isBookWishlisted = (book) => {
     return wishlisted.some((wishlistItem) => wishlistItem.id === book.id);
   };
+  console.log({listOfBooks});
   return (
     <div className="bg-gray-100">
       <Navbar setIsSearch={setIsSearch} setSearchItem={setSearchItem} />
-      <HeroSection data={listOfBooks?.results?.slice(2,5)}/>
-      <div className="max-w-7xl mx-auto flex justify-end">
+      <HeroSection data={listOfBooks?.results?.slice(2, 5)} isLoading={isLoading}/>
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <h2 className="text-2xl font-semibold">All Collections</h2>
         <Filter filterList={filterList} selectedOption={setSelectedTopic} />
       </div>
       {isLoading ? (

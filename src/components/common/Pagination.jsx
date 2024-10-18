@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MdOutlineChevronLeft, MdOutlineChevronRight } from "react-icons/md";
 
 const Pagination = ({
   itemsPerPage,
@@ -22,20 +23,20 @@ const Pagination = ({
           type="button"
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
-          className="bg-black rounded text-white px-5 py-2"
+          className="border border-gray-400 rounded p-1 text-xl text-gray-500 disabled:cursor-not-allowed"
         >
-          Previous
+          <MdOutlineChevronLeft />
         </button>
-        <span>
-          Page {currentPage} of {totalPages}
+        <span className="text-sm font-semibold">
+          {currentPage} of {totalPages}
         </span>
         <button
           type="button"
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
-          className="bg-black rounded text-white px-5 py-2"
+          className="border border-gray-400 rounded p-1 text-xl text-gray-500"
         >
-          Next
+          <MdOutlineChevronRight />
         </button>
       </div>
     </div>

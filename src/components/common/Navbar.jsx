@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { FaSearch, FaHome, FaHeart, FaBars } from "react-icons/fa";
 import logo from "../../../public/MainLogo.png";
 import { LuSearch } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
-const Navbar = ({setIsSearch,setSearchItem}) => {
+const Navbar = ({ setIsSearch, setSearchItem }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -16,7 +17,9 @@ const Navbar = ({setIsSearch,setSearchItem}) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img src={logo} alt="logo" />
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
           </div>
           <div className="hidden md:flex md:ml-6 items-center relative w-full max-w-md">
             <input
@@ -35,18 +38,18 @@ const Navbar = ({setIsSearch,setSearchItem}) => {
 
           {/* Menu Items */}
           <div className="hidden md:flex space-x-8">
-            <a
-              href="#"
+            <Link
+              to="/"
               className="text-gray-700 hover:text-indigo-500 flex items-center"
             >
               <FaHome className="mr-2" /> Home
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/wishlist"
               className="text-gray-700 hover:text-indigo-500 flex items-center"
             >
               <FaHeart className="mr-2" /> Wishlist
-            </a>
+            </Link>
           </div>
 
           {/* Hamburger Menu */}
