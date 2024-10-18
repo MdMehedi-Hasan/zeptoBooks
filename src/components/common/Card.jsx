@@ -1,4 +1,5 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Card = ({
   title,
@@ -20,7 +21,8 @@ const Card = ({
           {title}
         </h2>
         <p className="text-sm text-gray-400 mb-2">{authorName}</p>
-        <p className="text-sm text-gray-500 mb-4">{genre}</p>
+        <p className="text-sm text-gray-500">{genre}</p>
+        <p className="text-sm text-gray-500 mb-4">{id}</p>
         <div className="flex items-center justify-between">
           {isWishlisted ? (
             <button
@@ -37,9 +39,12 @@ const Card = ({
               <FaRegHeart size={24} />
             </button>
           )}
-          <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800">
-            Buy Now
-          </button>
+          <Link
+            to={`/product/${id}`}
+            className="border border-gray-300 shadow px-4 py-2 rounded-md hover:bg-blue-400 hover:text-white transform duration-300"
+          >
+            See Details
+          </Link>
         </div>
       </div>
     </div>
