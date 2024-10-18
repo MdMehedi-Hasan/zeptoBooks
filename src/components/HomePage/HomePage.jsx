@@ -13,6 +13,8 @@ import Filter from "../common/Filter";
 import Navbar from "../common/Navbar";
 import Footer from "../common/Footer";
 import HeroSection from "./HeroSection";
+import Focus from "./Focus";
+import ReviewsSection from "./Reviews";
 
 const HomePage = () => {
   const [searchItem, setSearchItem] = useState("");
@@ -22,7 +24,7 @@ const HomePage = () => {
   const [filterList, setFilterList] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState("");
 
-    const { data: listOfBooks, isLoading } = useQuery({
+  const { data: listOfBooks, isLoading } = useQuery({
     queryKey: isSearch
       ? ["searchedBooks", isSearch]
       : selectedTopic
@@ -34,7 +36,7 @@ const HomePage = () => {
         : selectedTopic
         ? await getFilteredBooks(selectedTopic, currentPage)
         : await getListOfBooks(currentPage),
-  });  
+  });
 
   useEffect(() => {
     if (selectedTopic || currentPage > 1) {
@@ -71,11 +73,17 @@ const HomePage = () => {
   const isBookWishlisted = (book) => {
     return wishlisted.some((wishlistItem) => wishlistItem.id === book.id);
   };
-  console.log({listOfBooks});
+  console.log({ listOfBooks });
   return (
     <div className="bg-gray-100">
       <Navbar setIsSearch={setIsSearch} setSearchItem={setSearchItem} />
-      <HeroSection data={listOfBooks?.results?.slice(2, 5)} isLoading={isLoading}/>
+      <HeroSection
+        data={listOfBooks?.results?.slice(2, 5)}
+        isLoading={isLoading}
+      />
+      <div className="my-36">
+        <Focus />
+      </div>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <h2 className="text-2xl font-semibold">All Collections</h2>
         <Filter filterList={filterList} selectedOption={setSelectedTopic} />
@@ -87,7 +95,7 @@ const HomePage = () => {
           ))}
         </div>
       ) : (
-        <section className="max-w-7xl mx-auto grid grid-cols-5 gap-10 px-10 xl:px-0 mt-10">
+        <section className="max-w-7xl mx-auto grid grid-cols-5 gap-10 px-10 xl:px-0 my-10">
           {listOfBooks?.results?.map((book) => (
             <Card
               id={book?.id}
@@ -108,6 +116,9 @@ const HomePage = () => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
+      <div className="my-36">
+        <ReviewsSection />
+      </div>
       <Footer />
     </div>
   );
