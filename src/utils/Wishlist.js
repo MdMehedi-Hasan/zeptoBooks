@@ -2,7 +2,7 @@ export const addToWishlist = (book) => {
   // existing wishlist from localStorage
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-  // avoid duplicates
+  // avoiding duplicates
   const isBookInWishlist = wishlist.some((item) => item.id === book.id);
 
   if (!isBookInWishlist) {
