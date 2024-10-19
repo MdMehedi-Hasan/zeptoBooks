@@ -65,18 +65,18 @@ const Navbar = ({ setIsSearch, setSearchItem }) => {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
+            <Link
               href="#"
-              className="text-gray-700 hover:text-indigo-500 block flex items-center"
+              className="text-gray-700 hover:text-indigo-500 flex items-center justify-center"
             >
               <FaHome className="mr-2" /> Home
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
-              className="text-gray-700 hover:text-indigo-500 block flex items-center"
+              className="text-gray-700 hover:text-indigo-500 flex items-center justify-center"
             >
               <FaHeart className="mr-2" /> Wishlist
-            </a>
+            </Link>
             <div className="relative mt-3">
               <input
                 type="text"

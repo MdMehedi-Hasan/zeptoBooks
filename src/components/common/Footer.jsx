@@ -18,7 +18,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex justify-between mt-8">
+          <div className="flex flex-col items-center md:flex-row md:justify-between mt-8">
             <div className="flex space-x-8 mb-6 md:mb-0">
               <Link to="/" className="hover:text-blue-500 font-semibold">
                 Home

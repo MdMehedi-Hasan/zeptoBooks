@@ -12,12 +12,12 @@ const WishlistPage = () => {
   }, []);
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <div className="max-w-7xl mx-auto flex-grow my-20 space-y-8">
+      {/* <Navbar /> */}
+      {/* <div className="max-w-7xl mx-auto flex-grow my-20 space-y-8">
         {wishlisted.map((item) => (
           <Card key={item?.id} data={item} />
         ))}
-      </div>
+      </div> */}
       <Footer />
     </div>
   );

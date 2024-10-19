@@ -89,7 +89,7 @@ const HomePage = () => {
         <Filter filterList={filterList} selectedOption={setSelectedTopic} />
       </div>
       {isLoading ? (
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-10 mt-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-10 my-10">
           {Array.from({ length: 12 }).map((_, index) => (
             <CardSkeleton key={index} />
           ))}
