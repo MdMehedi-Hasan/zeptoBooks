@@ -5,12 +5,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const HeroSection = ({ data, isLoading }) => {
-  console.log(data);
   return (
     <section className="bg-orange-200 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
         {/* Text Content */}
-        <div className="w-full lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
+        <div className="w-full lg:w-1/2 text-center md:text-left mb-8 lg:mb-0">
           <h1 className="text-5xl font-semibold text-gray-900 mb-4 leading-tight">
             Explore the World of Books, <br /> Your Next Great Read Awaits.
           </h1>
@@ -34,7 +33,7 @@ const HeroSection = ({ data, isLoading }) => {
             </ul>
           </div>
         ) : (
-          <div className="w-4/12">
+          <div className="md:w-4/12 w-full">
             <Swiper
               modules={[Pagination, Autoplay]}
               spaceBetween={30}

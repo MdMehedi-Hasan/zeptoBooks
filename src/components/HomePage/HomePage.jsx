@@ -84,18 +84,18 @@ const HomePage = () => {
       <div className="my-36">
         <Focus />
       </div>
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between md:items-center gap-y-5 px-4 lg:px-8">
         <h2 className="text-2xl font-semibold">All Collections</h2>
         <Filter filterList={filterList} selectedOption={setSelectedTopic} />
       </div>
       {isLoading ? (
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-10 my-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-4 lg:px-8 my-10">
           {Array.from({ length: 12 }).map((_, index) => (
             <CardSkeleton key={index} />
           ))}
         </div>
       ) : (
-        <section className="max-w-7xl mx-auto grid grid-cols-5 gap-10 px-10 xl:px-0 my-10">
+        <section className="w-full max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center gap-5 lg:gap-10 px-4 lg:px-8 mt-10 mb-36">
           {listOfBooks?.results?.map((book) => (
             <Card
               id={book?.id}
@@ -116,7 +116,7 @@ const HomePage = () => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-      <div className="my-36">
+      <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 my-36">
         <ReviewsSection />
       </div>
       <Footer />
