@@ -9,7 +9,7 @@ const Card = ({ data }) => {
         />
       </div>
 
-      <div className="w-10/12 pl-4 flex items-end justify-between">
+      <div className="w-10/12 pl-4 flex flex-col md:flex-row items-end justify-between">
         <div className="w-10/12">
           {/* Title with truncation */}
           <h3 className="text-lg font-bold text-gray-800 truncate w-full">

@@ -51,7 +51,7 @@ const DetailsPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="max-w-7xl w-full flex-grow mx-auto px-8">
+      <div className="max-w-7xl w-full flex-grow mx-auto px-5 lg:px-8">
         <div className="flex flex-col lg:flex-row items-start bg-white rounded-lg mt-16 gap-x-16">
           {/* singleBook Image */}
           <div className="lg:w-3/12 w-full mb-6 lg:mb-0">
@@ -110,7 +110,7 @@ const DetailsPage = () => {
         </div>
         <div>
           <h2 className="text-xl font-semibold mt-36">Popular Collections</h2>
-          <section className="max-w-7xl mx-auto grid grid-cols-5 gap-10 px-10 xl:px-0 mt-10 mb-36">
+          <section className="w-full max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center gap-5 lg:gap-10 lg:px-10 xl:px-0 mt-10 mb-36">
             {listOfBooks?.results?.map((book) => (
               <Card
                 id={book?.id}

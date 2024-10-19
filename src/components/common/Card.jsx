@@ -1,3 +1,4 @@
+import { BsArrowUpRightSquare } from "react-icons/bs";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -12,12 +13,12 @@ const Card = ({
   isWishlisted,
 }) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-lg max-w-xs overflow-hidden">
+    <div className="w-full bg-white border border-gray-200 rounded-lg shadow-lg max-w-xs overflow-hidden">
       <div className="bg-gray-100 h-64 w-full flex items-center justify-center p-4">
         <img src={image} alt="cover" className="h-full w-full object-contain" />
       </div>
       <div className="p-4">
-        <h2 className="text-lg font-semibold mb-1 text-gray-600 truncate">
+        <h2 className="text-lg font-semibold mb-1 text-gray-600 truncate w-full">
           {title}
         </h2>
         <p className="text-sm text-gray-400 mb-2">{authorName}</p>
@@ -43,7 +44,8 @@ const Card = ({
             to={`/product/${id}`}
             className="border border-gray-300 shadow px-4 py-2 rounded-md hover:bg-blue-400 hover:text-white transform duration-300"
           >
-            See Details
+            <span className="hidden sm:block">See Details</span>
+            <span className="block sm:hidden"><BsArrowUpRightSquare /></span>
           </Link>
         </div>
       </div>

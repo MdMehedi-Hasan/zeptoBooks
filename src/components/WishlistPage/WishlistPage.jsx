@@ -3,6 +3,7 @@ import { getWishlist } from "../../utils/Wishlist";
 import Card from "./Card";
 import Navbar from "../common/Navbar";
 import Footer from "../common/Footer";
+import { Link } from "react-router-dom";
 
 const WishlistPage = () => {
   const [wishlisted, setWishlisted] = useState([]);
@@ -12,12 +13,12 @@ const WishlistPage = () => {
   }, []);
   return (
     <div className="min-h-screen flex flex-col">
-      {/* <Navbar /> */}
-      {/* <div className="max-w-7xl mx-auto flex-grow my-20 space-y-8">
+      <Navbar />
+      <div className="w-full max-w-7xl mx-auto flex-grow my-20 flex flex-col gap-5 px-5 lg:px-8">
         {wishlisted.map((item) => (
-          <Card key={item?.id} data={item} />
+          <Link to={`/product/${item?.id}`} key={item?.id}><Card  data={item} /></Link>
         ))}
-      </div> */}
+      </div>
       <Footer />
     </div>
   );
